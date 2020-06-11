@@ -6,13 +6,13 @@ int steps;
 
 int main(void)
 {
-  // ask for the number
+  // Ask for the number
   int n = get_int("number: ");
-  
+
   steps = 0;
-  // call function
+  // Call function
   collatz(n);
-  
+
   // print the results
   printf("Steps: %d\n", steps);
 
@@ -25,7 +25,7 @@ int collatz(int n)
   {
     return 0;
   }
-  // even numbers
+  // Even numbers
   else if ((n % 2) == 0)
   {
     steps++;
