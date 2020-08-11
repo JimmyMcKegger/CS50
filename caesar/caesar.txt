@@ -1,0 +1,15 @@
+run program and get key
+
+check if key is a digit
+    print error if not
+
+convert argc[2] into an integer
+
+get string
+
+for each letter
+    rotate each letter of text by key
+    print new letter in ciphertext
+    if not a letter print as is
+
+print new line
