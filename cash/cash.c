@@ -11,7 +11,7 @@ int main(void)
 {
     do
 
-    // get the float
+    // get a float from the user
     {
     f = get_float("Amount paid:");
     }
@@ -21,10 +21,10 @@ int main(void)
 coins = 0;
 
 
-//convert f to an integer
+// convert f to an integer
 
 n = round(f * 100);
-
+// count out coins
 if (n >= 1)
 {
         for (i=0; n >= 25; coins++)
@@ -46,7 +46,7 @@ if (n >= 1)
             n = (n - 1);
         }
 }
-
+// print out the number of coins to return as change
 printf("%i\n", coins);
 
 }
