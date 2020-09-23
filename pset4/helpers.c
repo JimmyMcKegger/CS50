@@ -82,7 +82,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
             b[j] = image[i][j].rgbtBlue;
         }
 
-        //set end position
+        //set start position
         int w = 0;
 
         //loop back over re-assigning the new arrays
