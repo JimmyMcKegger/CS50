@@ -82,7 +82,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
             b[j] = image[i][j].rgbtBlue;
         }
 
-        //set start position
+        //set end position
         int w = 0;
 
         //loop back over re-assigning the new arrays
@@ -100,5 +100,117 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
+    // make a new image to prevent blurred tiles from throwing off the next count
+    RGBTRIPLE blurImage[height][width];
+    //nested loops
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            int totalRed = 0;
+            int totalBlue = 0;
+            int totalGreen = 0;
+            float counter = 0.0;
+
+            blurImage[i][j] = image[i][j];
+
+            //top left
+            if (i - 1 >= 0 && j - 1 >= 0)
+            {
+                totalRed += image[i - 1][j - 1].rgbtRed;
+                totalGreen += image[i - 1][j - 1].rgbtGreen;
+                totalBlue += image[i - 1][j - 1].rgbtBlue;
+                counter++;
+            }
+
+            //top center
+            if (i - 1 >= 0)
+            {
+                totalRed += image[i - 1][j].rgbtRed;
+                totalGreen += image[i - 1][j].rgbtGreen;
+                totalBlue += image[i - 1][j].rgbtBlue;
+                counter++;
+            }
+
+            //top right
+            if (i - 1 >= 0 && j + 1 < width)
+            {
+                totalRed += image[i - 1][j + 1].rgbtRed;
+                totalGreen += image[i - 1][j + 1].rgbtGreen;
+                totalBlue += image[i - 1][j + 1].rgbtBlue;
+                counter++;
+            }
+
+            //right
+            if (j + 1 < width)
+            {
+                totalRed += image[i][j + 1].rgbtRed;
+                totalGreen += image[i][j + 1].rgbtGreen;
+                totalBlue += image[i][j + 1].rgbtBlue;
+                counter++;
+            }
+            //bottom right
+            if (i + 1 < height && j + 1 < width)
+            {
+                totalRed += image[i + 1][j + 1].rgbtRed;
+                totalGreen += image[i + 1][j + 1].rgbtGreen;
+                totalBlue += image[i + 1][j + 1].rgbtBlue;
+                counter++;
+            }
+            //bottom center
+            if (i + 1 < height)
+            {
+                totalRed += image[i + 1][j].rgbtRed;
+                totalGreen += image[i + 1][j].rgbtGreen;
+                totalBlue += image[i + 1][j].rgbtBlue;
+                counter++;
+            }
+            //bottom left
+            if (i + 1 < height && j - 1 >= 0)
+            {
+                totalRed += image[i + 1][j - 1].rgbtRed;
+                totalGreen += image[i + 1][j - 1].rgbtGreen;
+                totalBlue += image[i + 1][j - 1].rgbtBlue;
+                counter++;
+            }
+            //left
+            if (j - 1 >= 0)
+            {
+                totalRed += image[i][j - 1].rgbtRed;
+                totalGreen += image[i][j - 1].rgbtGreen;
+                totalBlue += image[i][j - 1].rgbtBlue;
+                counter++;
+            }
+
+            //middle
+            totalRed += image[i][j].rgbtRed;
+            totalGreen += image[i][j].rgbtGreen;
+            totalBlue += image[i][j].rgbtBlue;
+            counter++;
+
+            float rr, rg, rb;
+            rr = totalRed / counter;
+            rg = totalGreen / counter;
+            rb = totalBlue / counter;
+
+
+            blurImage[i][j].rgbtRed = round(rr);
+            blurImage[i][j].rgbtGreen = round(rg);
+            blurImage[i][j].rgbtBlue = round(rb);
+
+        }
+    }
+
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            //re-assign the blurred pixels to the image
+            image[i][j].rgbtRed = blurImage[i][j].rgbtRed;
+            image[i][j].rgbtGreen = blurImage[i][j].rgbtGreen;
+            image[i][j].rgbtBlue = blurImage[i][j].rgbtBlue;
+        }
+    }
+
     return;
 }
