@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy
+{% endblock %}
+
+{% block main %}
+    <h2>
+        Buy stock!
+    </h2>
+    <br>
+    <form action="/buy" method="post">
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="symbol" name="symbol" placeholder="symbol" type="text">
+        </div>
+        <div class="mb-3">
+          <input class="form-control mx-auto w-auto" id="shares" name="shares" placeholder="number" type="number">
+      </div>
+        <button class="btn btn-primary" type="submit">Buy stock</button>
+    </form>
+    <br>
+    {% if myWarning %}
+    <div class="alert alert-warning" role="alert">
+        {{ myWarning }}
+      </div>
+      {% endif %}
+{% endblock %}
+
+{% block result %}
+
+  {% if stock %}
+     <div>foo</div>
+  {% else %}
+     <div>bar</div>
+  {% endif %}
+
+{% endblock %}

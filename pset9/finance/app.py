@@ -279,4 +279,5 @@ def sell():
             return apology("portfolio update failed")
         return redirect("/")
 
+        return apology("TODO")
 

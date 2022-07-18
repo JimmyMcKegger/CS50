@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Top up
+{% endblock %}
+
+{% block main %}
+    <h2>
+        Add money to your account
+    </h2>
+    <br>
+    <form action="/topup" method="post">
+        <button class="btn btn-primary" type="submit">Add money</button>
+    </form>
+{% endblock %}

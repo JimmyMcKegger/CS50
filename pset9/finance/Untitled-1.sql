@@ -1,0 +1,2 @@
+
+CREATE TABLE portfolio (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, user_id INTEGER NOT NULL, symbol TEXT NOT NULL, number_of_shares INTEGER, FOREIGN KEY(user_id) REFERENCES users(id));

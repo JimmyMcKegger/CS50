@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+<div class="table table-striped">
+
+  <h2>
+    Your portfolio
+  </h2>
+  <h3>
+      Cash:
+  </h3>
+  <h4>
+      {{ myBalance | usd}}
+  </h4>
+
+  <table class="table">
+      <thead>
+          <tr>
+              <th scope="col">Stock</th>
+              <th scope="col">Shares</th>
+              <th scope="col">Current Price</th>
+              <th scope="col">Total Value</th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for s in stock %}
+          <tr>
+              <td>
+                  {{ s['symbol'] }}
+              </td>
+              <td>
+                  {{ s['number_of_shares'] }}
+              </td>
+              <td>
+                {{ prices[s['symbol']] | usd}}
+            </td>
+            <td>
+              {{ (prices[s['symbol']] * s['number_of_shares']) | usd }}
+          </td>
+          </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+</div>
+{% endblock %}

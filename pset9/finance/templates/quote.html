@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <h2>
+        Stock symbol:
+    </h2>
+    <br>
+    <form action="/quote" method="post">
+        <div class="mb-3">
+            <input autofocus class="form-control mx-auto w-auto" id="symbol" name="symbol" placeholder="" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Get quote</button>
+    </form>
+    <br>
+    {% if myWarning %}
+    <div class="alert alert-warning" role="alert">
+        {{ myWarning }}
+      </div>
+      {% endif %}
+{% endblock %}
+
+{% block result %}
+
+  {% if stock %}
+     <div>foo</div>
+  {% else %}
+     <div>bar</div>
+  {% endif %}
+
+{% endblock %}
